@@ -44,7 +44,7 @@ function feature() {
 
   }
 
-  // function for taking screenshots per 4 seconds ! 
+  // function for taking screenshots per second ! 
 
 
 
@@ -57,8 +57,20 @@ function feature() {
                       if(webcamRef.current != null){
                         const screen_images = webcamRef.current.getScreenshot();
 
-                        if(socketRef.current?.readyState == WebSocket.OPEN && screen_images )
-                              socketRef.current.send(screen_images);
+                        if(socketRef.current?.readyState == WebSocket.OPEN && screen_images ){
+
+                          const base_data =  screen_images.split(',')[1]; 
+                          const binaryString = window.atob(base_data);
+                          const len = binaryString.length;
+                          const bytes = new Uint8Array(len)
+
+                            for (let i = 0; i < len; i++) {
+                              bytes[i] = binaryString.charCodeAt(i);
+                            }
+
+                          socketRef.current.send(bytes);
+                        }
+
                       }
 
       }, 1000);
