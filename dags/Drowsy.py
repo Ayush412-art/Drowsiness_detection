@@ -52,6 +52,32 @@ def pipeline():
 
                             model = YOLO("/home/adityasanyal1996/Drowsiness_detection/runs/detect/train5/weights/best.pt")
                             results = model.predict(img)
+
+                            detected_labels = set() # Use a set to store unique labels
+
+                            for result in results:
+                                # result.boxes contains information about detected objects (bounding boxes, classes, confidences)
+                                # Iterate through each detected bounding box
+                                for box in result.boxes:
+                                    # box.cls contains the predicted class ID (as a tensor or int)
+                                    class_id = int(box.cls)
+                            
+                                    # model.names maps class IDs to class names
+                                    if class_id in model.names:
+                                        label = model.names[class_id]
+                                        detected_labels.add(label) # Add the detected label to the set
+                                    else:
+                                         print(f"Warning: Detected unknown class ID: {class_id}")
+                            
+                            
+                            # Print the names of the detected classes
+                            if detected_labels:
+                                print("\nDetected object classes:")
+                                # Convert the set to a list and sort for consistent output
+                                for label in sorted(list(detected_labels)):
+                                    print(f"- {label}")
+                            else:
+                                print("\nNo objects detected in the image.")
                             # Replace with your actual detection logic
 
                             # Example: Send a response back (e.g., detection results as JSON)

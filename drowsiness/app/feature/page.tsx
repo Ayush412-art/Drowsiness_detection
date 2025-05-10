@@ -17,7 +17,7 @@ function feature() {
 
       console.log("Camera started");
 
-      socketRef.current = new WebSocket("ws://localhost:8080");
+      socketRef.current = new WebSocket("ws://localhost:8000/ws");
       
       socketRef.current.onopen = () =>{
         console.log("websocket connected")
@@ -61,7 +61,7 @@ function feature() {
                               socketRef.current.send(screen_images);
                       }
 
-      }, 4000);
+      }, 1000);
 
 
     }
