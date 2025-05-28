@@ -12,6 +12,9 @@ function Navbar() {
         <li className='hover:text-gray-500'>
             <Link href={"/pricing"}>pricing</Link>
         </li>
+        <li className='hover:text-gray-500'>
+            <Link href={"/mapsection"}>mapsection</Link>
+        </li>
       </ul>
     </div>
   )
