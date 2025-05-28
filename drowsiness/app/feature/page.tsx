@@ -2,6 +2,8 @@
 import Webcam from "react-webcam";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+
+
 const videoConstraints = {
     height : 250,
     width : 260,
@@ -11,6 +13,7 @@ function feature() {
   const [videoStatus , setvideoStatus] = useState(false);
   const  webcamRef = useRef<Webcam | null>(null);
   const socketRef  = useRef<WebSocket | null>(null);
+  const [counter , setCounter] = useState("");
 
   const startCamera = () =>{
       setvideoStatus(true);
@@ -22,8 +25,15 @@ function feature() {
       socketRef.current.onopen = () =>{
         console.log("websocket connected")
       }
-      socketRef.current.onmessage = (e) =>{
-          console.log("Data received" , e.data)
+      socketRef.current.onmessage = async(e) =>{
+        try{
+          const jsonData = JSON.parse(e.data);
+          console.log("Received data : " , jsonData.value);
+          setCounter(jsonData.value);
+        }
+        catch(err){
+          console.log("error occured : " , err)
+        }
       }
       socketRef.current.onerror = (err) =>{
           console.log("Error occured : " , err);
@@ -108,6 +118,7 @@ function feature() {
 
           </div>
 
+    
     </div>
     </>
   )

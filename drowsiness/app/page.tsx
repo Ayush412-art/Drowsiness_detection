@@ -1,5 +1,6 @@
 
 'use client'
+import About_page from "./components/About_page";
 import Navbar from "./components/Navbar";
 import { useRouter } from "next/navigation";
 export default function Home() {
@@ -32,6 +33,7 @@ export default function Home() {
             <img  src={"bg_png.png"} alt="png_img"></img>
           </div>
     </div>
+          <About_page />
     </>
   );
 }
