@@ -3,6 +3,7 @@
 import About_page from "./components/About_page";
 import Navbar from "./components/Navbar";
 import { useRouter } from "next/navigation";
+import Cards from "./components/Cards";
 export default function Home() {
 
   const router = useRouter();
@@ -34,6 +35,14 @@ export default function Home() {
           </div>
     </div>
           <About_page />
+
+          <div className="grid grid-cols-3 max-w-[80%] mx-auto m-12">
+          <Cards  title="Eye tracking" description="advance algorithms to track eye movements and blinking patterns to detect signs of drowsiness."/>
+          <Cards  title="Real-time Alerts" description="Immediate audio and visual alerts warn 
+          drivers when signs of fatique are detected , helping them stay alert or know when to take a break"/>
+          <Cards  title="Integration Ready" description="Our system can integrate with vehicle 
+          systems to automatically adjust temperture , audio , or even engage autonomous safety features"/>
+          </div>
     </>
   );
 }
