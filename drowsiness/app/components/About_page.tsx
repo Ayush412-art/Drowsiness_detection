@@ -11,10 +11,7 @@ function About_page() {
                     accidents caused by fatique.
                 </p>
             </div>
-            <div className="cards">
-                      
-
-               </div>
+            
 
     </div>
   )
