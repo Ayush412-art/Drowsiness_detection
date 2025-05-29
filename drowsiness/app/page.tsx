@@ -4,6 +4,7 @@ import About_page from "./components/About_page";
 import Navbar from "./components/Navbar";
 import { useRouter } from "next/navigation";
 import Cards from "./components/Cards";
+import Pricing_data from "./components/Pricing_data";
 export default function Home() {
 
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function Home() {
             { /* started button   */ }
 
               <div className="flex justify-center mt-4">
-              <button onClick={()=>router.push("/feature")} className=" cursor-pointer py-3 px-4 items-center bg-purple-400 rounded-3xl">Get started</button>
+              <button onClick={()=>router.push("/feature")} className=" cursor-pointer py-3 px-4 hover:bg-purple-700 delay-100 items-center bg-purple-400 rounded-3xl">Get started</button>
 
               </div>
           </div>
@@ -43,6 +44,7 @@ export default function Home() {
           <Cards  title="Integration Ready" description="Our system can integrate with vehicle 
           systems to automatically adjust temperture , audio , or even engage autonomous safety features"/>
           </div>
+          <Pricing_data />
     </>
   );
 }
