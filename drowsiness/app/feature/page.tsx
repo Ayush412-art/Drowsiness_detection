@@ -13,7 +13,8 @@ function feature() {
   const [videoStatus , setvideoStatus] = useState(false);
   const  webcamRef = useRef<Webcam | null>(null);
   const socketRef  = useRef<WebSocket | null>(null);
-  const [counter , setCounter] = useState("");
+  const [counter , setCounter] = useState(0);
+  const [status , Setstatus] = useState("")
 
   const startCamera = () =>{
       setvideoStatus(true);
@@ -29,7 +30,7 @@ function feature() {
         try{
           const jsonData = JSON.parse(e.data);
           console.log("Received data : " , jsonData.value);
-          setCounter(jsonData.value);
+          Setstatus(jsonData.value);
         }
         catch(err){
           console.log("error occured : " , err)
@@ -55,9 +56,6 @@ function feature() {
   }
 
   // function for taking screenshots per second ! 
-
-
-
   const ScreenshotsHandler = () =>{
       let final_interval : any;
     if(videoStatus && socketRef.current && webcamRef.current){
@@ -83,11 +81,25 @@ function feature() {
 
                       }
 
-      }, 1000);
+      }, 5000);
 
 
     }
     () => clearInterval(final_interval)
+
+  }
+  // function that contains logic of different alerts!!
+  const Alert_handler = () =>{
+        let count = 0;
+        let yellowAlertCount = 0;
+        if(status === "drowsy")
+          count = count + 1;
+
+        if(count > 5){
+          alert("Yellow alert");
+          yellowAlertCount = yellowAlertCount + 1
+        }
+        console.log(yellowAlertCount);
 
   }
 
@@ -95,10 +107,16 @@ function feature() {
   useEffect(()=>{
       ScreenshotsHandler();
   } , [videoStatus])
+
+  useEffect(() => {
+      Alert_handler();
+  } , [status])
   
 
   return (
     <>
+    <div className="w-full bg-gray-300 h-12 "></div>
+
     <div  className="w-[80%] mx-auto">
     <div className="mx-auto h-[550px] w-[560px] bg-black grid items-center justify-center gap-y-3 mt-12">
         
