@@ -2,6 +2,9 @@
 import Webcam from "react-webcam";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+import { FaMapMarkedAlt } from "react-icons/fa";
+import { FaHistory } from "react-icons/fa";
+import { IoMdHelpCircleOutline } from "react-icons/io";
 
 
 const videoConstraints = {
@@ -13,7 +16,7 @@ function feature() {
   const [videoStatus , setvideoStatus] = useState(false);
   const  webcamRef = useRef<Webcam | null>(null);
   const socketRef  = useRef<WebSocket | null>(null);
-  const [counter , setCounter] = useState(0);
+  const [drowsyCount  , setDrowsyCount] = useState(0);
   const [status , Setstatus] = useState("")
 
   const startCamera = () =>{
@@ -90,16 +93,25 @@ function feature() {
   }
   // function that contains logic of different alerts!!
   const Alert_handler = () =>{
-        let count = 0;
-        let yellowAlertCount = 0;
-        if(status === "drowsy")
-          count = count + 1;
-
-        if(count > 5){
-          alert("Yellow alert");
-          yellowAlertCount = yellowAlertCount + 1
-        }
-        console.log(yellowAlertCount);
+       
+        if(status === "drowsy"){
+            setDrowsyCount((prev : number) : any => {
+              const current  = prev + 1;
+              
+              if(current > 5 && current < 10){
+                alert("drowsiness detected")
+              }
+              else if(current > 10){
+                alert("red alert !!")
+              }
+              else {}
+                return current;
+        })
+      }
+        else {
+            setDrowsyCount(0);
+      }
+      
 
   }
 
@@ -115,7 +127,22 @@ function feature() {
 
   return (
     <>
-    <div className="w-full bg-gray-300 h-12 "></div>
+    <div className="w-full flex justify-around bg-gray-100 border-b-4 h-14 border-solid">
+            <div className="text-black font-medium hover:scale-110 cursor-pointer px-3">
+                <FaMapMarkedAlt size={30} className="text-gray-700" />
+                <h2>Map</h2>
+            </div>
+
+             <div className="text-black cursor-pointer hover:scale-110 font-medium px-3">
+                < FaHistory size={30} className="text-gray-700  " />
+                <h2>Track</h2>
+            </div>
+
+             <div className="text-black cursor-pointer hover:scale-110  font-medium  px-3">
+                <IoMdHelpCircleOutline size={30} className="text-gray-700" />
+                <h2>Help</h2>
+            </div>
+    </div>
 
     <div  className="w-[80%] mx-auto">
     <div className="mx-auto h-[550px] w-[560px] bg-black grid items-center justify-center gap-y-3 mt-12">
