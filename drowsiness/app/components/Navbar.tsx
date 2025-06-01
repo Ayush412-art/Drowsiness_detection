@@ -13,7 +13,7 @@ function Navbar() {
             <Link href={"/pricing"}>pricing</Link>
         </li>
         <li className='hover:text-gray-500'>
-            <Link href={"/mapsection"}>mapsection</Link>
+            <Link href={"/map"}>mapsection</Link>
         </li>
       </ul>
     </div>

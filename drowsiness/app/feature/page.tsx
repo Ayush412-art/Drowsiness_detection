@@ -84,7 +84,7 @@ function feature() {
 
                       }
 
-      }, 5000);
+      }, 3000);
 
 
     }
@@ -96,13 +96,14 @@ function feature() {
        
         if(status === "drowsy"){
             setDrowsyCount((prev : number) : any => {
-              const current  = prev + 1;
+              let current  = prev + 1;
               
               if(current > 5 && current < 10){
                 alert("drowsiness detected")
               }
               else if(current > 10){
                 alert("red alert !!")
+                current = 0;
               }
               else {}
                 return current;
@@ -144,7 +145,14 @@ function feature() {
             </div>
     </div>
 
-    <div  className="w-[80%] mx-auto">
+
+    <section  className="w-[80%] mx-auto">
+      <div className="flex gap-5 justify-center md:m-3 m-2 text-white">
+            <div className="bg-red-700 py-3 px-4 rounded-3xl hover:bg-red-500 hover:scale-105 ">Danger</div>
+            <div className="bg-yellow-700 py-3 px-4 rounded-3xl">Warning</div>
+            <div className="bg-green-700 py-3 px-4 rounded-3xl">Normal</div>
+      </div>
+
     <div className="mx-auto h-[550px] w-[560px] bg-black grid items-center justify-center gap-y-3 mt-12">
         
          {videoStatus && <Webcam 
@@ -164,7 +172,7 @@ function feature() {
           </div>
 
     
-    </div>
+    </section>
     </>
   )
 }
