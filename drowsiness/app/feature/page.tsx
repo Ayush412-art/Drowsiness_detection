@@ -90,6 +90,8 @@ function Feature() {
     return () => stop && stop();
   }, [videoStatus]);
 
+      }, 1000);
+
 
  useEffect(() => {
   const interval = setInterval(() => {
