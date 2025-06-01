@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 
-model = YOLO("/home/adityasanyal1996/Drowsiness_detection/runs/detect/train5/weights/best.pt")  # Load a pretrained YOLOv11 model
+model = YOLO("/home/adityasanyal1996/Drowsiness_detection/runs/detect/train21/weights/best.pt")  # Load a pretrained YOLOv11 model
 results = model.predict("/home/adityasanyal1996/Drowsiness_detection/include/datasets/Drowsy_1/test/images/69_jpg.rf.e4ece8db1259cb1acce6250869089ad3.jpg")  # Predict on an image
 
 # Process the results to get detected class names

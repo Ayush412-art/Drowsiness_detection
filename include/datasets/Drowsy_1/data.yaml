@@ -1,6 +1,6 @@
-train: /home/adityasanyal1996/Drowsiness_detection/datasets/Drowsy_1/train/images
-val: /home/adityasanyal1996/Drowsiness_detection/datasets/Drowsy_1/valid/images
-test: /home/adityasanyal1996/Drowsiness_detection/datasets/Drowsy_1/test/images
+train: /home/adityasanyal1996/Drowsiness_detection/include/datasets/Drowsy_1/train/images
+val: /home/adityasanyal1996/Drowsiness_detection/include/datasets/Drowsy_1/valid/images
+test: /home/adityasanyal1996/Drowsiness_detection/include/datasets/Drowsy_1/test/images
 
 nc: 2
 names: ['awake', 'drowsy']

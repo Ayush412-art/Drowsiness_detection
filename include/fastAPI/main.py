@@ -39,7 +39,7 @@ async def websocket_endpoint(websocket: WebSocket):
                             # detection_results = perform_detection(img)
                             print("Successfully decoded image frame. Perform detection...")
 
-                            model = YOLO("/home/adityasanyal1996/Drowsiness_detection/runs/detect/train5/weights/best.pt")
+                            model = YOLO("/home/adityasanyal1996/Drowsiness_detection/runs/detect/train21/weights/best.pt")
                             results = model.predict(img)
 
                             detected_labels = set() # Use a set to store unique labels
@@ -64,7 +64,8 @@ async def websocket_endpoint(websocket: WebSocket):
                                 print("\nDetected object classes:")
                                 # Convert the set to a list and sort for consistent output
                                 for label in sorted(list(detected_labels)):
-                                    await websocket.send_text(f"{label}")
+                                    response = {"value":f"{label}"}
+                                    await websocket.send_json(response)
 
                 else:
                     print("Could not decode image frame.")
