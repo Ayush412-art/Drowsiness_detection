@@ -26,6 +26,7 @@ io.on("connection", (socket) => {
 
 
   socket.on("userLocation", (coords) => {
+    // console.log("user location " , coords)
     locations[socket.id] = coords;
     io.emit("allLocations", locations);
   });
