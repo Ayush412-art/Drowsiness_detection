@@ -108,9 +108,12 @@ function Feature() {
       }
     };
   }, [videoStatus]);
-
 useEffect(() => {
   if (!videoStatus) return;
+=======
+      }, 1000);
+
+
 
   const interval = setInterval(() => {
     const recentStatuses = statusRef.current.slice(-5);
