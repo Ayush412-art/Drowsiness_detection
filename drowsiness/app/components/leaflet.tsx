@@ -11,7 +11,7 @@ import L, { Marker as LeafletMarker } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { getSocket } from "../utils/socket";
 
-// Icon for all markers
+
 const icon = new L.Icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
   shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
@@ -19,7 +19,7 @@ const icon = new L.Icon({
   iconAnchor: [12, 41],
 });
 
-// Recenter map to current user location
+
 function RecenterMap({ latlng }: { latlng: L.LatLngExpression }) {
   const map = useMap();
   useEffect(() => {
@@ -39,12 +39,12 @@ export default function LeafletMap() {
   useEffect(() => {
     const socket = socketRef.current;
 
-    // Listen for all users' locations
+
     socket.on("allLocations", (locations) => {
       setAllLocations(locations);
     });
 
-    // Clean up on unmount
+    
     return () => {
       socket.off("allLocations");
     };
@@ -64,13 +64,12 @@ export default function LeafletMap() {
         ];
         setMyLocation(coords);
 
-        // Emit to server
+      
         socketRef.current.emit("userLocation", {
           lat: coords[0],
           lng: coords[1],
         });
 
-        // Update marker position manually if needed
         if (markerRef.current) {
           markerRef.current.setLatLng(coords);
         }
@@ -100,7 +99,7 @@ export default function LeafletMap() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* Your marker */}
+    
         {myLocation && (
           <>
             <Marker
@@ -116,9 +115,9 @@ export default function LeafletMap() {
           </>
         )}
 
-        {/* Other users */}
+      
         {Object.entries(allLocations).map(([id, loc]) => {
-          // Skip own location
+          
           if (myLocation && loc.lat === myLocation[0] && loc.lng === myLocation[1]) {
             return null;
           }
