@@ -76,7 +76,11 @@ function Feature() {
       clearTimeout(alertTimeoutRef.current);
     }
 
+<<<<<<< HEAD
 
+=======
+    // Reset
+>>>>>>> 952c746 (changed the page.tsx as well as the detections script)
     statusRef.current = [];
     setYellowTriggers(0);
     setAlertLevel("green");
@@ -98,7 +102,7 @@ function Feature() {
             socketRef.current.send(bytes);
           }
         }
-      }, 3000);
+      }, 500);
     }
 
     return () => {
@@ -108,6 +112,7 @@ function Feature() {
       }
     };
   }, [videoStatus]);
+<<<<<<< HEAD
 useEffect(() => {
   if (!videoStatus) return;
 =======
@@ -115,11 +120,17 @@ useEffect(() => {
 
 
 
+=======
+
+ useEffect(() => {
+   //if (!videoStatus) return;
+>>>>>>> 952c746 (changed the page.tsx as well as the detections script)
   const interval = setInterval(() => {
     const recentStatuses = statusRef.current.slice(-5);
     const drowsy = recentStatuses.filter((s) => s === "drowsy").length;
     const awake = recentStatuses.filter((s) => s === "awake").length;
 
+<<<<<<< HEAD
     if (drowsy >= 2 || drowsy >= awake) {
       if (yellowTriggers >= 5) {
         if (!hasAlerted) {
@@ -147,6 +158,19 @@ useEffect(() => {
           if (alertLevel === "yellow") {
             setAlertLevel("green");
           }
+=======
+    if (drowsy >= 3 || drowsy >= awake) {
+      if (!hasAlerted) {
+        setAlertLevel("red");
+        alert("Drowsiness threshold exceeded!");
+        setHasAlerted(true);
+      } else {
+        setAlertLevel("yellow");
+
+        if (alertTimeoutRef.current) clearTimeout(alertTimeoutRef.current);
+        alertTimeoutRef.current = setTimeout(() => {
+          setAlertLevel((current) => (current === "yellow" ? "green" : current));
+>>>>>>> 952c746 (changed the page.tsx as well as the detections script)
         }, 1500);
       }
     } else {
@@ -158,6 +182,7 @@ useEffect(() => {
     }
 
     statusRef.current = [];
+<<<<<<< HEAD
   }, 5000);
 
   return () => clearInterval(interval);
@@ -195,6 +220,23 @@ useEffect(() => {
           }`}
         >
           Danger
+=======
+  }, 2000);
+
+  return () => clearInterval(interval);
+}, [alertLevel, hasAlerted]);
+
+
+  return (
+    <>
+      <div className="w-full flex justify-around bg-gray-100 border-b-4 h-14 border-solid">
+        <div
+          onClick={() => router.push("/map")}
+          className="text-black font-medium hover:scale-110 cursor-pointer px-3"
+        >
+          <FaMapMarkedAlt size={30} className="text-gray-700" />
+          <h2>Map</h2>
+>>>>>>> 952c746 (changed the page.tsx as well as the detections script)
         </div>
         <div
           className={`py-2 px-4 rounded-3xl text-sm sm:text-base ${
@@ -250,6 +292,32 @@ useEffect(() => {
   </>
 );
 
+<<<<<<< HEAD
+=======
+        <div className="flex justify-center mt-2.5 gap-x-2">
+          <button
+            onClick={startCamera}
+            disabled={videoStatus}
+            className={`py-3 px-4 rounded-3xl ${
+              videoStatus ? "bg-red-300 cursor-not-allowed" : "bg-red-600"
+            }`}
+          >
+            Start Camera
+          </button>
+          <button
+            onClick={stopCamera}
+            disabled={!videoStatus}
+            className={`py-3 px-4 rounded-3xl ${
+              !videoStatus ? "bg-blue-300 cursor-not-allowed" : "bg-blue-500"
+            }`}
+          >
+            Stop Camera
+          </button>
+        </div>
+      </section>
+    </>
+  );
+>>>>>>> 952c746 (changed the page.tsx as well as the detections script)
 }
 
 export default Feature;

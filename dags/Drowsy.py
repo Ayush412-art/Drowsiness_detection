@@ -19,7 +19,7 @@ def pipeline():
     def train_model():
 
         model = YOLO("yolo11s.yaml")
-        model.train(data = "/home/adityasanyal1996/Drowsiness_detection/datasets/Drowsy_1/data.yaml", epochs = 5)
+        model.train(data = "/home/adityasanyal1996/Drowsiness_detection/datasets/Drowsy_1/data.yaml", epochs = 3)
         
     @task
     def convert_to_API():
