@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { FaMapMarkedAlt, FaHistory } from "react-icons/fa";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
+
 
 const videoConstraints = {
   height: 250,
@@ -125,7 +127,39 @@ useEffect(() => {
 
           const strongBuzzer = new Audio('/sound1.mp3');
           strongBuzzer.play();
-          alert("Drowsiness threshold exceeded! RED ALERT!");
+         if (!hasAlerted) {
+  setAlertLevel("red");
+  setHasAlerted(true);
+
+  const strongBuzzer = new Audio('/sound1.mp3');
+  strongBuzzer.play();
+
+  Swal.fire({
+    title: "Driver Drowsiness Alert!",
+    text: "Do you want to continue webcam monitoring or navigate to map?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Continue Monitoring",
+    cancelButtonText: "Go to Map",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Monitoring Resumed",
+        text: "Webcam monitoring continues.",
+        icon: "success"
+      });
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      router.push("/map");
+    }
+  });
+
+  setTimeout(() => {
+    setHasAlerted(false);
+    setYellowTriggers(0);
+  }, 5000);
+}
+
 
          
           setTimeout(() => {
