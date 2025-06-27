@@ -23,8 +23,6 @@ function Feature() {
   const alertTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const router = useRouter();
-
-  const [status, setStatus] = useState("");
   const [yellowTriggers, setYellowTriggers] = useState(0);
   const [alertLevel, setAlertLevel] = useState<"green" | "yellow" | "red">("green");
   const [hasAlerted, setHasAlerted] = useState(false);
@@ -43,8 +41,6 @@ function Feature() {
       try {
         const jsonData = JSON.parse(e.data);
         const receivedStatus = jsonData.value;
-        console.log("status:", receivedStatus);
-        setStatus(receivedStatus);
         statusRef.current.push(receivedStatus);
       } catch (err) {
         console.log("error occurred:", err);
