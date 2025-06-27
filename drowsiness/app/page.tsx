@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Cards from './components/Cards';
 import Pricing_data from './components/Pricing_data';
 import Footer from './components/Footer';
-
+import Image from 'next/image';
 export default function Home() {
   const router = useRouter();
 
@@ -44,10 +44,12 @@ export default function Home() {
         </div>
 
         <div className="w-full">
-          <img
-            src={'bg_png.png'}
+      <Image
+            src={'/bg_png.png'}
             alt="png_img"
-            className="w-full h-auto rounded-xl shadow-md"
+            width={500}
+            height={300}
+            className=" h-auto rounded-xl shadow-md"
           />
         </div>
       </div>
