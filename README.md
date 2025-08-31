@@ -83,3 +83,10 @@ Performed some best optimizations of Reactjs and typescript like useful state ma
 ![App Screenshot](https://i.postimg.cc/vBtmVx10/Screenshot-252.png)
 
 
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+
+
