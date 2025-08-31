@@ -6,6 +6,7 @@ that occur are avoidable, but due to the lack of initiative by the drivers as we
 accidents happen on a highly regular basis.So What would be the possible solution?
 -> Answer : The Personalized drowiness detection system is a solution on detection the drowsiness of drivers using machine learning and give them the real time alerts about their drosiness levels.
 So , This projects provides the real time alerts along with the option to take rest by showing hotels , motels , restaurants as well as medical facilities.
+![App Screenshot](https://i.postimg.cc/tRm0hQ2Q/506shots-so.png)
 
 ## Optimizations
 
